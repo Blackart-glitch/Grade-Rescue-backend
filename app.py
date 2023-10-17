@@ -1,6 +1,11 @@
 from flask import Flask
+from routes.auth import auth
 
 app = Flask(__name__)
+app.register_blueprint(auth)
+
+# Enable debug mode
+app.debug = True
 
 @app.route('/')
 def hello_world():
