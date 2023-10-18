@@ -3,8 +3,14 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 
 auth = Blueprint('auth', __name__)
 
+def token():
+    # Handle token logic here
+    # get random 11 digits
+    token = random.randint(10000000000, 99999999999)
 
-@auth.route('/login')
+    #c
+
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
    
     return 'Login, Page!'
