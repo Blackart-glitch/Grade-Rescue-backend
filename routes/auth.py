@@ -22,3 +22,8 @@ def register():
         # Handle registration logic here
         flash('Account created', 'success')
         return redirect(url_for('auth.login'))  # Redirect to the login page
+
+@auth.route('/logout')
+def logout():
+    # Handle logout logic here
+    return 'user logged out'
