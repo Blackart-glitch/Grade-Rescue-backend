@@ -21,8 +21,11 @@ def webhook():
         repo_path = '/home/Xander/Grade-Rescue-backend'  # server local repository path
         repo = git.Repo(repo_path)
 
-        # Use the existing 'origin' remote to pull
+        # Ensure that the 'origin' remote exists, and pull from it
         origin = repo.remotes.origin
+        if 'origin' not in [remote.name for remote in repo.remotes]:
+            return 'Remote "origin" does not exist', 400
+
         origin.pull()
 
         return 'Updated PythonAnywhere successfully', 200
