@@ -3,7 +3,7 @@ from flask import Flask, request
 from routes.auth import auth
 from config.dbconnect import mysql
 
-app = Flask(__name)
+app = Flask(__name__)
 app.register_blueprint(auth)
 
 # Enable debug mode
