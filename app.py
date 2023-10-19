@@ -21,8 +21,8 @@ def webhook():
         repo_path = '/home/Xander/Grade-Rescue-backend'  # server local repository path
         repo = git.Repo(repo_path)
 
-        # remote URL to pull
-        origin = repo.create_remote('origin', 'https://github.com/Blackart-glitch/Grade-Rescue-backend.git')
+        # Use the existing 'origin' remote to pull
+        origin = repo.remotes.origin
         origin.pull()
 
         return 'Updated PythonAnywhere successfully', 200
