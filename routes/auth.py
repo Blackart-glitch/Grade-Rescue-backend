@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Flask, Blueprint, render_template, request, redirect, url_for, flash
 from config.dbconnect import mydb
-import token
+from access_token import generate_access_token, token_destroy, token_validate
 
 auth = Blueprint('auth', __name__)
+app = Flask(__name__)
 
 # Login route
 @app.route('/login', methods=['POST'])
@@ -21,7 +22,7 @@ def login():
 
     if user:
         # destroy all tokens for this user
-        response = token.token_destroy(user.id)
+        response = token_destroy(user.id)
       
 
         # Generate a new access token
@@ -133,6 +134,6 @@ def register():
 @auth.route('/logout')
 def logout():
     # destroy all tokens for this user
-    response = token.token_destroy(user_id)
+    response = token_destroy(user_id)
 
     return jsonify('user logged out')
