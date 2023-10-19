@@ -21,10 +21,10 @@ def webhook():
         repo_path = '/home/Xander/Grade-Rescue-backend'  # server local repository path
         repo = git.Repo(repo_path)
 
-        # Ensure that the 'origin' remote exists, and pull from it
-        origin = repo.remotes.origin
+        # Pull the latest changes from the git remote
         if 'origin' not in [remote.name for remote in repo.remotes]:
             return 'Remote "origin" does not exist', 400
+
 
         origin.pull()
 
