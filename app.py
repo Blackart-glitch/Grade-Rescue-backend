@@ -2,6 +2,7 @@ import git
 from flask import Flask, request
 from routes.auth import auth
 from config.dbconnect import mysql
+import subprocess
 
 app = Flask(__name__)
 app.register_blueprint(auth)
@@ -17,16 +18,8 @@ def webhook():
         if request.method != 'POST':
             return 'Wrong event type', 400
 
-        # Open the local Git repository
-        repo_path = '/home/Xander/Grade-Rescue-backend'  # server local repository path
-        repo = git.Repo(repo_path)
-
-        # Pull the latest changes from the git remote
-        if 'origin' not in [remote.name for remote in repo.remotes]:
-            return 'Remote "origin" does not exist', 400
-
-
-        origin.pull()
+        # Run the bash script
+        subprocess.run(['bash', 'script.sh'])
 
         return 'Updated PythonAnywhere successfully', 200
     except Exception as e:
